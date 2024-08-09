@@ -43,7 +43,6 @@ let {setUserData}= useContext(NameContext)
       setUserData(data.token)
       nav("/");
     } catch (error) {
-      console.log(error.response.data.message);
       setApiError(error.response.data.message);
     } finally {
       setLoading(false);

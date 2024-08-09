@@ -53,7 +53,7 @@ let {setUserData}= useContext(NameContext)
 
   return (
     <>
-      <div className="md:w-1/2 mx-auto my-8">
+      <div className="md:w-1/2 mx-auto my-8 ">
         <h3 className="text-3xl font-semibold mb-4">Login Now</h3>
 
         {apiError && (

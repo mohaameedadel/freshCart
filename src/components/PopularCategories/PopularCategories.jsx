@@ -4,8 +4,9 @@ import Slider from "react-slick";
 
 export default function PopularCategories() {
   var settings = {
+    arrows:false,
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
