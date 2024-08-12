@@ -61,7 +61,7 @@ export default function PopularCategories() {
           <img
             key={category._id}
             src={category.image}
-            className="h-[180px]"
+            className="h-[200px]"
             alt={category}
           />
         ))}

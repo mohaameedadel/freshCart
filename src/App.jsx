@@ -14,6 +14,8 @@ import NameContextProvider from "./components/context/NameContext";
 import ProtectedComponent from "./components/ProtectedComponent/ProtectedComponent";
 import ProtectedUser from "./components/ProtectedUser/ProtectedUser";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import CartContextProvider from "./components/context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   let routers = createBrowserRouter([
@@ -92,9 +94,12 @@ function App() {
 
   return (
     <>
-      <NameContextProvider>
-        <RouterProvider router={routers}></RouterProvider>
-      </NameContextProvider>
+      <CartContextProvider>
+        <NameContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
+          <Toaster />
+        </NameContextProvider>
+      </CartContextProvider>
     </>
   );
 }

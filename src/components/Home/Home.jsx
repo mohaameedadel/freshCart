@@ -1,12 +1,19 @@
+import { useContext, useEffect } from "react";
 import AllProducts from "../AllProducts/AllProducts";
-import Loading from "../Loading/Loading";
 import MainSlider from "../MainSlider/MainSlider";
 import PopularCategories from "../PopularCategories/PopularCategories";
+import { CartContext } from "../context/CartContext";
 
 export default function Home() {
+  let { setTokenStatus  } = useContext(CartContext);
+
+  useEffect(() => {
+    setTokenStatus(true);
+  }, []);
+
   return (
     <>
-    <MainSlider/>
+      <MainSlider />
       <div className="my-8">
         <PopularCategories />
       </div>
