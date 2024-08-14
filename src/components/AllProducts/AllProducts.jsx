@@ -5,7 +5,7 @@ import Loading from "../Loading/Loading";
 import { CartContext } from "../context/CartContext";
 
 export default function AllProducts() {
-  let { addProductToCart } = useContext(CartContext);
+  let { addProductToCart, loading } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   async function getProducts() {
@@ -50,10 +50,22 @@ export default function AllProducts() {
                     </div>
                   </div>
                 </Link>
-                <div onClick={() => addProductToCart(product.id)} className="p-2 pt-0">
-                  <button className="bg-green-500 w-full p-2 rounded text-white btn">
-                    Add to cart
-                  </button>
+                <div className="p-2 pt-0">
+                  {loading ? (
+                    <button
+                      type="button"
+                      className="bg-green-500 w-full p-2 rounded text-white btn"
+                    >
+                      <i className="fas fa-spinner fa-spin-pulse"></i>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addProductToCart(product.id)}
+                      className="bg-green-500 w-full p-2 rounded text-white btn"
+                    >
+                      Add to cart
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

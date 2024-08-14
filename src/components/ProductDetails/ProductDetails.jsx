@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { CartContext } from "../context/CartContext";
 
 export default function ProductDetails() {
-  let { addProductToCart } = useContext(CartContext);
+  let { addProductToCart, loading } = useContext(CartContext);
   let { id } = useParams();
 
   var settings = {
@@ -75,12 +75,23 @@ export default function ProductDetails() {
                     {productDetails.ratingsAverage}
                   </span>
                 </div>
-                <button
-                  onClick={() => addProductToCart(productDetails.id)}
-                  className="bg-green-500 btn w-full p-2 rounded text-white btn"
-                >
-                  Add to cart
-                </button>
+                <div className="p-2 pt-0">
+                  {loading ? (
+                    <button
+                      type="button"
+                      className="bg-green-500 w-full p-2 rounded text-white btn"
+                    >
+                      <i className="fas fa-spinner fa-spin-pulse"></i>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addProductToCart(productDetails.id)}
+                      className="bg-green-500 w-full p-2 rounded text-white btn"
+                    >
+                      Add to cart
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -123,12 +134,21 @@ export default function ProductDetails() {
                       </div>
                     </Link>
                     <div className="p-2 pt-0">
-                      <button
-                        onClick={() => addProductToCart(product.id)}
-                        className="bg-green-500 w-full p-2 rounded text-white btn"
-                      >
-                        Add to cart
-                      </button>
+                      {loading ? (
+                        <button
+                          type="button"
+                          className="bg-green-500 w-full p-2 rounded text-white btn"
+                        >
+                          <i className="fas fa-spinner fa-spin-pulse"></i>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => addProductToCart(product.id)}
+                          className="bg-green-500 w-full p-2 rounded text-white btn"
+                        >
+                          Add to cart
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
