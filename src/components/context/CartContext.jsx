@@ -9,7 +9,7 @@ export default function CartContextProvider({ children }) {
   const [cartCount, setCartCount] = useState(null);
   const [loading, setLoading] = useState(false);
   const [tokenStatus, setTokenStatus] = useState(false);
-
+  const [totalPrise, setTotalPrise] = useState(0);
   let headers = {
     token: localStorage.getItem("userToken"),
   };
@@ -22,6 +22,7 @@ export default function CartContextProvider({ children }) {
         { headers }
       );
 
+      setTotalPrise(data.data.totalCartPrice);
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
     } catch (err) {
@@ -40,6 +41,7 @@ export default function CartContextProvider({ children }) {
         { productId },
         { headers }
       );
+      setTotalPrise(data.data.totalCartPrice);
 
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
@@ -62,6 +64,8 @@ export default function CartContextProvider({ children }) {
             headers,
           }
         );
+        setTotalPrise(data.data.totalCartPrice);
+
         setCart(data.data.products);
         setCartCount(data.numOfCartItems);
         toast.success("Done");
@@ -81,6 +85,7 @@ export default function CartContextProvider({ children }) {
         { headers }
       );
 
+      setTotalPrise(data.data.totalCartPrice);
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
       toast.success("Product removed");
@@ -135,6 +140,7 @@ export default function CartContextProvider({ children }) {
         updateProductCount,
         removeProduct,
         clearCart,
+        totalPrise
       }}
     >
       {children}

@@ -3,10 +3,11 @@ import logo from "../../assets/images/freshcart-logo.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NameContext } from "../context/NameContext";
 import { CartContext } from "../context/CartContext";
+import { WishlistContext } from "../context/WishlistContext";
 
 export default function Navbar() {
   let { cartCount, setTokenStatus, tokenStatus } = useContext(CartContext);
-
+  let { wishlistCount } = useContext(WishlistContext);
   let { userData, setUserData } = useContext(NameContext);
   const [open, setOpen] = useState(false);
   let navigate = useNavigate();
@@ -57,15 +58,26 @@ export default function Navbar() {
             </div>
             <ul className="flex flex-col md:flex-row justify-center items-center md:space-x-2">
               {userData && (
-                <li>
-                  <NavLink onClick={() => setOpen(false)} to="cart">
-                    <i className="fa-solid fa-xl fa-cart-shopping relative text-mainColor">
-                      <span className="absolute -top-[15px] left-1/2 -translate-x-1/2 text-xs text-white">
-                        {tokenStatus && cartCount ? cartCount : 0}
-                      </span>
-                    </i>
-                  </NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink onClick={() => setOpen(false)} to="cart">
+                      <i className="fa-solid fa-xl fa-cart-shopping relative text-mainColor">
+                        <span className="absolute -top-[15px] left-1/2 -translate-x-1/2 text-xs text-white">
+                          {tokenStatus && cartCount ? cartCount : 0}
+                        </span>
+                      </i>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink onClick={() => setOpen(false)} to="wishlist">
+                      <i className="fa-solid fa-heart text-red-500 text-3xl relative">
+                        <span className="absolute top-[9px] left-1/2 -translate-x-1/2 text-xs text-white">
+                          {tokenStatus && wishlistCount ? wishlistCount : 0}
+                        </span>
+                      </i>
+                    </NavLink>
+                  </li>
+                </>
               )}
 
               <li className="space-x-2 text-black">
@@ -84,7 +96,7 @@ export default function Navbar() {
                       localStorage.removeItem("userToken");
                       setUserData(null);
                       navigate("login");
-                      setTokenStatus(false)
+                      setTokenStatus(false);
                     }}
                   >
                     logout

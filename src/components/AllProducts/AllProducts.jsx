@@ -3,9 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import { CartContext } from "../context/CartContext";
+import { WishlistContext } from "../context/WishlistContext";
 
 export default function AllProducts() {
   let { addProductToCart, loading } = useContext(CartContext);
+  const { addToWishlist, wishlistCheck, removeFromWishlist } =
+    useContext(WishlistContext);
   const [products, setProducts] = useState([]);
 
   async function getProducts() {
@@ -17,7 +20,7 @@ export default function AllProducts() {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [wishlistCheck]);
   return (
     <>
       {products.length > 0 ? (
@@ -26,11 +29,24 @@ export default function AllProducts() {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="product duration-500 cursor-pointer flex flex-col justify-between"
+                className="product relative duration-500 cursor-pointer flex flex-col justify-between"
               >
+                <i
+                  onClick={() => {
+                    wishlistCheck.some((i) => i === product.id)
+                      ? removeFromWishlist(product.id)
+                      : addToWishlist(product.id);
+                  }}
+                  className={`fa-solid fa-heart ${
+                    wishlistCheck.some((i) => i == product.id)
+                      ? "text-red-500 "
+                      : "hover:text-red-500"
+                  } absolute top-2 right-2 duration-300 text-2xl`}
+                ></i>
                 <Link to={`details/${product.id}`}>
                   <div>
                     <img
+                      loading="lazy"
                       src={product.imageCover}
                       className="w-full block"
                       alt={product.title}

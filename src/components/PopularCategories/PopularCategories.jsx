@@ -4,9 +4,10 @@ import Slider from "react-slick";
 
 export default function PopularCategories() {
   var settings = {
-    arrows:false,
+    arrows: false,
     dots: true,
     infinite: true,
+    autoplay:true,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
@@ -46,6 +47,7 @@ export default function PopularCategories() {
       "https://ecommerce.routemisr.com/api/v1/categories"
     );
 
+
     setCategories(data.data);
   }
 
@@ -58,12 +60,10 @@ export default function PopularCategories() {
       <h2 className="text-3xl my-4">Shop popular category</h2>
       <Slider {...settings}>
         {categories.map((category) => (
-          <img
-            key={category._id}
-            src={category.image}
-            className="h-[200px]"
-            alt={category}
-          />
+          <div key={category._id} className="focus:outline-none">
+            <img loading="lazy" src={category.image} className="max-h-[200px] w-full" alt={category} />
+            <p className="text-lg">{category.name}</p>
+          </div>
         ))}
       </Slider>
     </>

@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import AllProducts from "../AllProducts/AllProducts";
 
 export default function Productes() {
-  return (
-    <div>Productes</div>
-  )
+  return <div className="py-4"><AllProducts />;</div>
 }

@@ -4,9 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import Slider from "react-slick";
 import { CartContext } from "../context/CartContext";
+import { WishlistContext } from "../context/WishlistContext";
 
 export default function ProductDetails() {
   let { addProductToCart, loading } = useContext(CartContext);
+  const { addToWishlist, wishlistCheck, removeFromWishlist } =
+    useContext(WishlistContext);
   let { id } = useParams();
 
   var settings = {
@@ -61,8 +64,20 @@ export default function ProductDetails() {
                 ))}
               </Slider>
             </div>
-            <div className="info md:w-3/4 md:ps-4 md:col-span-2 md:justify-self-start">
+            <div className="info relative md:w-3/4 md:ps-4 md:col-span-2 md:justify-self-start">
               <div>
+                <i
+                  onClick={() => {
+                    wishlistCheck.some((i) => i === productDetails.id)
+                      ? removeFromWishlist(productDetails.id)
+                      : addToWishlist(productDetails.id);
+                  }}
+                  className={`fa-solid fa-heart ${
+                    wishlistCheck.some((i) => i == productDetails.id)
+                      ? "text-red-500 "
+                      : "hover:text-red-500"
+                  } absolute top-2 right-2 duration-300 text-2xl cursor-pointer`}
+                ></i>
                 <h2>{productDetails.title}</h2>
                 <p className="my-3 text-gray-500">
                   {productDetails.description}
@@ -102,8 +117,20 @@ export default function ProductDetails() {
                 {products.map((product) => (
                   <div
                     key={product.id}
-                    className="product duration-500 cursor-pointer flex flex-col justify-between"
+                    className="product relative duration-500 cursor-pointer flex flex-col justify-between"
                   >
+                    <i
+                      onClick={() => {
+                        wishlistCheck.some((i) => i === product.id)
+                          ? removeFromWishlist(product.id)
+                          : addToWishlist(product.id);
+                      }}
+                      className={`fa-solid fa-heart ${
+                        wishlistCheck.some((i) => i == product.id)
+                          ? "text-red-500 "
+                          : "hover:text-red-500"
+                      } absolute top-2 right-2 duration-300 text-2xl`}
+                    ></i>
                     <Link to={`/details/${product.id}`}>
                       <div onClick={() => scrollUp()}>
                         <div>

@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { NameContext } from "../context/NameContext";
 export default function Login() {
-
-let {setUserData}= useContext(NameContext)
+  let { setUserData } = useContext(NameContext);
 
   const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -14,7 +13,6 @@ let {setUserData}= useContext(NameContext)
   let nav = useNavigate();
 
   let validationSchema = Yup.object().shape({
-
     email: Yup.string()
       .email("Enter Valid E-mail")
       .required("Email is required"),
@@ -31,8 +29,8 @@ let {setUserData}= useContext(NameContext)
         values
       );
 
-      localStorage.setItem("userToken", data.token )
-      setUserData(data.token)
+      localStorage.setItem("userToken", data.token);
+      setUserData(data.token);
       nav("/");
     } catch (error) {
       console.log(error.response.data.message);
@@ -53,7 +51,7 @@ let {setUserData}= useContext(NameContext)
 
   return (
     <>
-      <div className="md:w-1/2 mx-auto my-8 ">
+      <div className="md:w-1/2 mx-auto my-8 py-7">
         <h3 className="text-3xl font-semibold mb-4">Login Now</h3>
 
         {apiError && (
@@ -65,7 +63,6 @@ let {setUserData}= useContext(NameContext)
           </div>
         )}
         <form className="mx-auto" onSubmit={formik.handleSubmit}>
-          
           {/* email input */}
 
           <div className="relative   my-6 group">

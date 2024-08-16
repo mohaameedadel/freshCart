@@ -3,8 +3,9 @@ import { CartContext } from "../context/CartContext";
 import Loading from "../Loading/Loading";
 
 export default function Cart() {
-  let { cart, getCartItems, loading, updateProductCount, removeProduct } =
+  let { cart, getCartItems, loading, updateProductCount, removeProduct,totalPrise } =
     useContext(CartContext);
+
 
   useEffect(() => {
     getCartItems();
@@ -136,14 +137,18 @@ export default function Cart() {
                     </td>
                   </tr>
                 ))}
+                <tr >
+                  <td  className="py-4 text-2xl text-center">Total Prise</td>
+                  <td colSpan={3} className="py-4 text-2xl text-end text-mainColor">{totalPrise} EGP</td>
+                </tr>
               </tbody>
             </table>
           ) : (
-            <h3 className="text-3xl text-center">Your Cart Is Empty</h3>
+            <h3 className="text-3xl text-center my-4">Your Cart Is Empty</h3>
           )}
         </div>
       ) : (
-        ""
+        <h3 className="text-3xl text-center my-4">Your Cart Is Empty</h3>
       )}
     </>
   );

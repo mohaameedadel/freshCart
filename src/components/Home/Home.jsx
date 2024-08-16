@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <>
-      <MainSlider />
+      <div className="my-4"><MainSlider /></div>
       <div className="my-8">
         <PopularCategories />
       </div>

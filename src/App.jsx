@@ -16,6 +16,8 @@ import ProtectedUser from "./components/ProtectedUser/ProtectedUser";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import CartContextProvider from "./components/context/CartContext";
 import { Toaster } from "react-hot-toast";
+import WishlistContextProvider from "./components/context/WishlistContext";
+import Wishlist from "./components/Wishlist/Wishlist";
 
 function App() {
   let routers = createBrowserRouter([
@@ -36,6 +38,14 @@ function App() {
           element: (
             <ProtectedComponent>
               <Cart />
+            </ProtectedComponent>
+          ),
+        },
+        {
+          path: "wishlist",
+          element: (
+            <ProtectedComponent>
+              <Wishlist />
             </ProtectedComponent>
           ),
         },
@@ -87,6 +97,14 @@ function App() {
             </ProductDetails>
           ),
         },
+        {
+          path: "products/details/:id",
+          element: (
+            <ProductDetails>
+              <ProductDetails />
+            </ProductDetails>
+          ),
+        },
         { path: "*", element: <Notfound /> },
       ],
     },
@@ -95,10 +113,12 @@ function App() {
   return (
     <>
       <CartContextProvider>
-        <NameContextProvider>
-          <RouterProvider router={routers}></RouterProvider>
-          <Toaster />
-        </NameContextProvider>
+        <WishlistContextProvider>
+          <NameContextProvider>
+            <RouterProvider router={routers}></RouterProvider>
+            <Toaster />
+          </NameContextProvider>
+        </WishlistContextProvider>
       </CartContextProvider>
     </>
   );
