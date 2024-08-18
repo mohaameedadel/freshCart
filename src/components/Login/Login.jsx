@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { NameContext } from "../context/NameContext";
 export default function Login() {
@@ -17,7 +17,7 @@ export default function Login() {
       .email("Enter Valid E-mail")
       .required("Email is required"),
     password: Yup.string()
-      .matches(/^[A-Z]{1}\w{5,7}$/, "Ex:(Ahmed123)")
+      .matches(/^[A-Z]{1}\w{5,15}$/, "Ex:(Ahmed123)")
       .required("Password is required"),
   });
 
@@ -120,21 +120,29 @@ export default function Login() {
             </div>
           )}
 
-          {loading ? (
-            <button
-              type="button"
-              className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          <div className="flex justify-between items-center flex-col md:flex-row">
+            {loading ? (
+              <button
+                type="button"
+                className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              >
+                <i className="fas fa-spinner fa-spin-pulse"></i>
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              >
+                Submit
+              </button>
+            )}
+            <Link
+              className="mt-4 hover:text-green-600 duration-200"
+              to={"/forgetpassword"}
             >
-              <i className="fas fa-spinner fa-spin-pulse"></i>
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            >
-              Submit
-            </button>
-          )}
+              Forget Password?
+            </Link>
+          </div>
         </form>
       </div>
     </>

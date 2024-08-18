@@ -69,7 +69,7 @@ export default function Footer() {
             />
             <button
               type="submit"
-              className="capitalize w-full md:w-[15%] mx-auto  rounded text-white bg-green-500  text-sm px-4 py-2"
+              className="capitalize w-full md:w-[15%] mx-auto  rounded text-white bg-green-500 hover:bg-green-800 duration-300 text-sm px-4 py-2"
             >
               share app link
             </button>

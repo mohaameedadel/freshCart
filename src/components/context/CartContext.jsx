@@ -1,4 +1,5 @@
 import axios from "axios";
+import { validateYupSchema } from "formik";
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -10,6 +11,7 @@ export default function CartContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [tokenStatus, setTokenStatus] = useState(false);
   const [totalPrise, setTotalPrise] = useState(0);
+  const [cartId, setCartId] = useState(null);
   let headers = {
     token: localStorage.getItem("userToken"),
   };
@@ -22,12 +24,15 @@ export default function CartContextProvider({ children }) {
         { headers }
       );
 
+
+      setCartId(data.data._id);
       setTotalPrise(data.data.totalCartPrice);
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
     } catch (err) {
       setCart(0);
       setCartCount(0);
+      console.log("Cart is empty");
     } finally {
       setLoading(false);
     }
@@ -41,8 +46,9 @@ export default function CartContextProvider({ children }) {
         { productId },
         { headers }
       );
-      setTotalPrise(data.data.totalCartPrice);
 
+      setTotalPrise(data.data.totalCartPrice);
+      setCartId(data.data._id);
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
       toast.success("Done");
@@ -64,8 +70,9 @@ export default function CartContextProvider({ children }) {
             headers,
           }
         );
-        setTotalPrise(data.data.totalCartPrice);
 
+        setCartId(data.data._id);
+        setTotalPrise(data.data.totalCartPrice);
         setCart(data.data.products);
         setCartCount(data.numOfCartItems);
         toast.success("Done");
@@ -84,7 +91,7 @@ export default function CartContextProvider({ children }) {
         `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
         { headers }
       );
-
+      setCartId(data.data._id);
       setTotalPrise(data.data.totalCartPrice);
       setCart(data.data.products);
       setCartCount(data.numOfCartItems);
@@ -140,7 +147,8 @@ export default function CartContextProvider({ children }) {
         updateProductCount,
         removeProduct,
         clearCart,
-        totalPrise
+        totalPrise,
+        cartId,
       }}
     >
       {children}

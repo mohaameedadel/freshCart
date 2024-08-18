@@ -18,6 +18,11 @@ import CartContextProvider from "./components/context/CartContext";
 import { Toaster } from "react-hot-toast";
 import WishlistContextProvider from "./components/context/WishlistContext";
 import Wishlist from "./components/Wishlist/Wishlist";
+import CheckOut from "./components/CheckOut/CheckOut";
+import AllOrders from "./components/AllOrders/AllOrders";
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import EnterNewPassword from "./components/EnterNewPassword/EnterNewPassword";
 
 function App() {
   let routers = createBrowserRouter([
@@ -38,6 +43,22 @@ function App() {
           element: (
             <ProtectedComponent>
               <Cart />
+            </ProtectedComponent>
+          ),
+        },
+        {
+          path: "checkout/:id",
+          element: (
+            <ProtectedComponent>
+              <CheckOut />
+            </ProtectedComponent>
+          ),
+        },
+        {
+          path: "allorders",
+          element: (
+            <ProtectedComponent>
+              <AllOrders />
             </ProtectedComponent>
           ),
         },
@@ -86,6 +107,30 @@ function App() {
           element: (
             <ProtectedUser>
               <Regestier />
+            </ProtectedUser>
+          ),
+        },
+        {
+          path: "forgetpassword",
+          element: (
+            <ProtectedUser>
+              <ForgetPassword />
+            </ProtectedUser>
+          ),
+        },
+        {
+          path: "resetpassword",
+          element: (
+            <ProtectedUser>
+              <ResetPassword />
+            </ProtectedUser>
+          ),
+        },
+        {
+          path: "enternewpassword",
+          element: (
+            <ProtectedUser>
+              <EnterNewPassword />
             </ProtectedUser>
           ),
         },

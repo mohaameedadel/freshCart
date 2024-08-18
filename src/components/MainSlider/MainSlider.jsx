@@ -9,6 +9,7 @@ export default function MainSlider() {
   var settings = {
     arrows: false,
     autoplay: true,
+    autoplaySpeed:4000,
     dots: true,
     infinite: true,
     speed: 500,

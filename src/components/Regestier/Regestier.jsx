@@ -22,7 +22,7 @@ let {setUserData}= useContext(NameContext)
       .email("Enter Valid E-mail")
       .required("Email is required"),
     password: Yup.string()
-      .matches(/^[A-Z]{1}\w{5,7}$/, "Ex:(Ahmed123)")
+      .matches(/^[A-Z]{1}\w{5,15}$/, "Ex:(Ahmed123)")
       .required("Password is required"),
     rePassword: Yup.string()
       .oneOf([Yup.ref("password")], "Please rePassword")

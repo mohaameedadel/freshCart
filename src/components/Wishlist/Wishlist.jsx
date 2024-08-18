@@ -7,7 +7,7 @@ export default function Wishlist() {
   let { wishlist, loading, removeFromWishlist, getWishlist, wishlistCount } =
     useContext(WishlistContext);
 
-    let {addProductToCart} = useContext(CartContext)
+  let { addProductToCart } = useContext(CartContext);
   useEffect(() => {
     getWishlist();
   }, [wishlistCount]);
@@ -63,7 +63,10 @@ export default function Wishlist() {
                       <i className="fa fa-trash me-2"></i>
                       Remove
                     </button>
-                    <button onClick={()=>addProductToCart(product.id)} className="font-medium block mx-auto text-green-600 dark:text-green-500 hover:underline">
+                    <button
+                      onClick={() => addProductToCart(product.id)}
+                      className="font-medium block mx-auto text-green-600 dark:text-green-500 hover:underline"
+                    >
                       <i className="fa-solid fa-cart-shopping text-green-600 me-2"></i>
                       Add To Cart
                     </button>
@@ -74,7 +77,7 @@ export default function Wishlist() {
           </table>
         </div>
       ) : (
-        <h3 className="text-3xl text-center my-4">Your Wishlist Is Empty</h3>
+        <h3 className="text-3xl text-center my-36">Your Wishlist Is Empty</h3>
       )}
     </>
   );

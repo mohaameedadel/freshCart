@@ -81,11 +81,30 @@ export default function Navbar() {
               )}
 
               <li className="space-x-2 text-black">
-                <i className="fab fa-facebook-f cursor-pointer"></i>
-                <i className="fab fa-linkedin-in cursor-pointer"></i>
-                <i className="fab fa-youtube cursor-pointer"></i>
-                <i className="fab fa-twitter cursor-pointer"></i>
-                <i className="fab fa-instagram cursor-pointer"></i>
+                <a target="blank" href="https://www.facebook.com/Doollaaa">
+                  <i className="fab fa-facebook-f cursor-pointer"></i>
+                </a>
+                <a
+                  target="blank"
+                  href="https://www.linkedin.com/in/mohaameedadel/"
+                >
+                  <i className="fab fa-linkedin-in cursor-pointer"></i>
+                </a>
+                <a
+                  target="blank"
+                  href="https://www.youtube.com/watch?v=oGB6-q94dtw"
+                >
+                  <i className="fab fa-youtube cursor-pointer"></i>
+                </a>
+                <a target="blank" href="https://github.com/mohaameedadel">
+                  <i className="fab fa-github cursor-pointer"></i>
+                </a>
+                <a
+                  target="blank"
+                  href="https://www.instagram.com/mohaameeed_adel/"
+                >
+                  <i className="fab fa-instagram cursor-pointer"></i>
+                </a>
               </li>
               {userData ? (
                 <li>
