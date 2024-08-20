@@ -63,7 +63,7 @@ export default function PopularCategories() {
             <img
               loading="lazy"
               src={category.image}
-              className="max-h-[200px] w-full"
+              className="h-[200px] w-full"
               alt={category}
             />
             <p className="text-lg">{category.name}</p>
